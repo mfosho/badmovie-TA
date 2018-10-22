@@ -78,9 +78,22 @@ app.post('/save', function(req, res) {
 });
 
 app.post('/delete', function(req, res) {
-
+  model.movies.delete(req.body.title, function(err, data) {
+    if (err) {
+      console.log(err);
+    } else {
+      model.movies.get((err, data) => {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log('get movie data from database', JSON.parse(JSON.stringify(data)));
+          res.send(data);
+        }
+      })
+    }
 });
 
+})
 //OPTION 2: Use Express Router
 //IF you decide to go with this option delete OPTION 1 to continue
 //Routes

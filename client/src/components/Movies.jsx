@@ -10,7 +10,8 @@ class Movies extends React.Component {
     // this.setState({
     //   movie: item
     // })
-    this.props.onSave(item);
+    this.props.showFaves ? this.props.onDelete(item): this.props.onSave(item)
+
   }
 
   // Make an onClick for each list item. If the movies shown is the search results, 

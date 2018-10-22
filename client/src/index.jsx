@@ -70,9 +70,17 @@ class App extends React.Component {
       })
   }
 
-  deleteMovie() {
+  deleteMovie(movie) {
     // same as above but do something diff
-    
+    axios.post('/delete', movie)
+      .then((data) => {
+        this.setState({
+          favorites: data.data
+        })
+      })
+      .catch((err) => {
+        console.log(err);
+      })
   }
 
   swapFavorites() {
@@ -90,7 +98,7 @@ class App extends React.Component {
         
         <div className="main">
           <Search onSearch={this.getMovies} swapFavorites={this.swapFavorites} showFaves={this.state.showFaves}/>
-          <Movies onSave={this.saveMovie} movies={this.state.showFaves ? this.state.favorites : this.state.movies} showFaves={this.state.showFaves}/>
+          <Movies onSave={this.saveMovie} onDelete={this.deleteMovie} movies={this.state.showFaves ? this.state.favorites : this.state.movies} showFaves={this.state.showFaves}/>
         </div>
       </div>
     );

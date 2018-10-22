@@ -16,8 +16,12 @@ module.exports = {
                               values (?, ?, ?, ?)', params, function(err, results) {
                                 callback(err, results);
                               })
+    },
+    delete: function(params, callback) {
+      sqlDb.connection.query('DELETE FROM movie WHERE title = ?', params, function(err, results) {
+        callback(err, results);
+      })
     }
   }
-
 
 }
