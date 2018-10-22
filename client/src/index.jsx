@@ -24,7 +24,7 @@ class App extends React.Component {
   getMovies(genreId) {
     // make an axios request to your server on the GET SEARCH endpoint
     // event.preventDefault()
-    // console.log('genreId', genreId)
+    console.log('genreId', genreId)
     if (genreId) {
       axios.get('/search', {
         params: {
@@ -52,9 +52,9 @@ class App extends React.Component {
     }
   }
 
-  saveMovie() {
+  saveMovie(movie) {
     // same as above but do something diff
-
+    
   }
 
   deleteMovie() {
@@ -69,14 +69,13 @@ class App extends React.Component {
   }
 
   render () {
-    this.getMovies();
   	return (
       <div className="app">
         <header className="navbar"><h1>Bad Movies</h1></header> 
         
         <div className="main">
           <Search onSearch={this.getMovies} swapFavorites={this.swapFavorites} showFaves={this.state.showFaves}/>
-          <Movies movies={this.state.showFaves ? this.state.favorites : this.state.movies} showFaves={this.state.showFaves}/>
+          <Movies onSave={this.saveMovie} movies={this.state.showFaves ? this.state.favorites : this.state.movies} showFaves={this.state.showFaves}/>
         </div>
       </div>
     );

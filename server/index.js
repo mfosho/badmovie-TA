@@ -4,6 +4,7 @@ var request = require('request')
 var app = express();
 var axios = require('axios');
 const { API_KEY } = require('../config.js');
+var model = require('./models/movieModel.js');
 
 //Helpers
 var apiHelpers = require('./helpers/apiHelpers.js');
@@ -33,13 +34,7 @@ app.get('/search', function(req, res) {
     .catch((err) => {
       console.log(err);
     })
-  // https://www.themoviedb.org/account/signup
 
-  // use this endpoint to search for movies by genres, you will need an API key
-
-  // https://api.themoviedb.org/3/discover/movie
-
-  // and sort them by horrible votes using the search parameters in the API
 });
 
 app.get('/genres', function(req, res) {
@@ -62,6 +57,7 @@ app.get('/genres', function(req, res) {
 });
 
 app.post('/save', function(req, res) {
+  // console.log('req is', req);
 
 });
 

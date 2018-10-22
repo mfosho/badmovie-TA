@@ -1,12 +1,13 @@
 -- SET UP SCHEMA HERE
--- DROP DATABASE movies;
+DROP DATABASE movies;
 CREATE DATABASE IF NOT EXISTS movies;
 USE movies;
 
 CREATE TABLE IF NOT EXISTS movie (
   id            INT NOT NULL AUTO_INCREMENT,
-  movie_name    VARCHAR(20) NOT NULL,
-  genre         VARCHAR(20),
+  title         VARCHAR(20) NOT NULL,
+  image_url     VARCHAR(20),
+  movie_year    INT,
   rating        INT,
   PRIMARY KEY (id)
 );

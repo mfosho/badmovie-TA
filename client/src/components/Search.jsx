@@ -7,11 +7,11 @@ class Search extends React.Component {
     super(props)
     this.state = {
       genres: [],
-      genreId: ''
+      value: ''
     };
     this.getGenres = this.getGenres.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
   componentDidMount() {
     this.getGenres()
@@ -34,8 +34,13 @@ class Search extends React.Component {
 
   handleChange(e) {
     this.setState({
-      genreId: e.target.value
+      value: e.target.value
     })
+    // console.log('change target value', this.state.value)
+  }
+  
+  handleSubmit() {
+    this.props.onSearch(this.state.value);
   }
 
   render() {
@@ -57,7 +62,7 @@ class Search extends React.Component {
         </select>
         <br/><br/>
 
-        <button onClick={this.props.onSearch(this.state.genreId)}>Search</button>
+        <button onClick={this.handleSubmit}>Search</button>
 
       </div>
     );
