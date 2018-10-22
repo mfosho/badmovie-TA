@@ -3,12 +3,16 @@ import React from 'react';
 class Movies extends React.Component {
   constructor(props) {
     super(props)
-
   }
 
   handleClick(item) {
+    console.log('saved item', item)
+    // this.setState({
+    //   movie: item
+    // })
     this.props.onSave(item);
   }
+
   // Make an onClick for each list item. If the movies shown is the search results, 
   // onClick add it to the database (do it in the main app, and pass down the function)
 
@@ -16,20 +20,27 @@ class Movies extends React.Component {
   // You can tell which list is currently being rendered based on whether the prop "showFaves" is false (search results) or true (fave list) (within index.jsx)
 
   render() {
+    console.log('movies list', this.props.movies)
     if(this.props.movies !== undefined) {
       return (
         <ul className="movies">
           {/* /* Make this list dynamic! */}
           {this.props.movies.map((movie) => {
             // console.log('movie is', movie);
-            let year = movie.release_date.slice(0,4)
-            if (movie.poster_path) {
-              var img = `http://image.tmdb.org/t/p/w185/${movie.poster_path}`
+            let poster_path = movie.poster_path || movie.image_url;
+            if (movie.release_date) {
+              var year = movie.release_date.slice(0,4);
+            } else {
+              var year = movie.movie_year;
+            }
+            let vote_average = movie.vote_average || movie.rating;
+            if (poster_path) {
+              var img = `http://image.tmdb.org/t/p/w185/${poster_path}`
             } else {
               var img = 'https://lh3.googleusercontent.com/97gnjRiv2zIRnDupzfxYFoI-6zlIK3jKgb6KOCDf_tjWkY9epbITdSFIbiKhuccOqQ=w300'
             }
             return(
-              <li className="movie_item" >
+              <li className="movie_item" onClick={this.handleClick.bind(this, movie)}>
                 <img src={img} />
                 <div className="movie_description">
                   <h2>{movie.title}</h2>
@@ -40,7 +51,7 @@ class Movies extends React.Component {
                     </div>
                     <div className="movie_rating">
                       <span className="title">Rating</span>
-                      <span>{movie.vote_average}</span>
+                      <span>{vote_average}</span>
                     </div>
                   </section>
                 </div>

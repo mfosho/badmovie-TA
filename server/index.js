@@ -58,7 +58,23 @@ app.get('/genres', function(req, res) {
 
 app.post('/save', function(req, res) {
   // console.log('req is', req);
-
+  // console.log('req body', req)
+  var params = [req.body.title, req.body.poster_path, req.body.release_date.slice(0,4), req.body.vote_average]
+  // console.log('params is', params)
+  model.movies.post(params, (err, data) => {
+    if (err) {
+      console.log(err);
+    } else {
+      model.movies.get((err, data) => {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log('get movie data from database', JSON.parse(JSON.stringify(data)));
+          res.send(data);
+        }
+      })
+    }
+  })
 });
 
 app.post('/delete', function(req, res) {

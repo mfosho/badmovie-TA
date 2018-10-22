@@ -21,10 +21,13 @@ class App extends React.Component {
     // you might have to do something important here!
   }
 
+  componentDidMount() {
+    this.getMovies();
+  }
   getMovies(genreId) {
     // make an axios request to your server on the GET SEARCH endpoint
     // event.preventDefault()
-    console.log('genreId', genreId)
+    // console.log('genreId', genreId)
     if (genreId) {
       axios.get('/search', {
         params: {
@@ -53,16 +56,28 @@ class App extends React.Component {
   }
 
   saveMovie(movie) {
+    // console.log('saved movie', movie);
     // same as above but do something diff
-    
+    axios.post('/save', movie)
+      .then((data) => {
+        this.setState({
+          favorites: data.data
+        })
+        console.log('favorites', this.state.favorites)
+      })
+      .catch((err) => {
+        console.log(err);
+      })
   }
 
   deleteMovie() {
     // same as above but do something diff
+    
   }
 
   swapFavorites() {
   //dont touch
+    // console.log('favorites data from swap', this.state.favorites)
     this.setState({
       showFaves: !this.state.showFaves
     });

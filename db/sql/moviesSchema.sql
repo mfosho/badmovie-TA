@@ -5,8 +5,8 @@ USE movies;
 
 CREATE TABLE IF NOT EXISTS movie (
   id            INT NOT NULL AUTO_INCREMENT,
-  title         VARCHAR(20) NOT NULL,
-  image_url     VARCHAR(20),
+  title         VARCHAR(50) NOT NULL,
+  image_url     VARCHAR(50),
   movie_year    INT,
   rating        INT,
   PRIMARY KEY (id)

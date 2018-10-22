@@ -11,7 +11,7 @@ module.exports = {
         callback(err, results);
       })
     },
-    post: function(callback) {
+    post: function(params, callback) {
       sqlDb.connection.query('INSERT INTO movie (TITLE, IMAGE_URL, MOVIE_YEAR, RATING) \
                               values (?, ?, ?, ?)', params, function(err, results) {
                                 callback(err, results);
