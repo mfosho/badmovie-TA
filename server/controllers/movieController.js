@@ -1,10 +1,12 @@
 const movieModel = require('../models/movieModel.js');
 const apiHelpers = require('../helpers/apiHelpers.js');
+var axios = require('axios');
 
 //Return requests to the client
 module.exports = {
   getSearch: (req, res) => {
-    // get the search genre     
+    // get the search genre  
+       
 
     // https://www.themoviedb.org/account/signup
     // get your API KEY
